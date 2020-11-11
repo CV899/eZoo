@@ -32,6 +32,7 @@ public class AddAnimalServlet extends HttpServlet {
 		//Get Parameters
 		//We MUST convert to a Long since parameters are always Strings
 		long id = Long.parseLong(request.getParameter("id"));
+		long feedingSchedule = Long.parseLong(request.getParameter("feeding_schedule"));
 		
 		String name = request.getParameter("name");
 
@@ -52,6 +53,7 @@ public class AddAnimalServlet extends HttpServlet {
 		//Create an Animal object from the parameters
 		Animal animalToSave = new Animal(
 				id, 
+				feedingSchedule,
 				name, 
 				kingdom,
 				phylum,

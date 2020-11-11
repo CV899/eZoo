@@ -3,6 +3,7 @@ package com.examples.ezoo.model;
 public class Animal{
 	
 	private long animalID = 0L;
+	private long feedingScheduleID = 0L;
 	private String name = "";
 	
 	private String taxKingdom = "";
@@ -21,11 +22,12 @@ public class Animal{
 	
 	public Animal(){}
 
-	public Animal(long animalID, String name, String taxKingdom, String taxPhylum, String taxClass, String taxOrder,
+	public Animal(long animalID, long feedingScheduleID, String name, String taxKingdom, String taxPhylum, String taxClass, String taxOrder,
 			String taxFamily, String taxGenus, String taxSpecies, double height, double weight, String type,
 			String healthStatus) {
 		super();
 		this.animalID = animalID;
+		this.feedingScheduleID = feedingScheduleID;
 		this.name = name;
 		this.taxKingdom = taxKingdom;
 		this.taxPhylum = taxPhylum;
@@ -38,6 +40,14 @@ public class Animal{
 		this.weight = weight;
 		this.type = type;
 		this.healthStatus = healthStatus;
+	}
+
+	public long getFeedingScheduleID() {
+		return feedingScheduleID;
+	}
+
+	public void setFeedingScheduleID(long feedingScheduleID) {
+		this.feedingScheduleID = feedingScheduleID;
 	}
 
 	public long getAnimalID() {

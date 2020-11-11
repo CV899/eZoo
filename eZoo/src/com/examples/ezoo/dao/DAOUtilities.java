@@ -18,6 +18,7 @@ public class DAOUtilities {
 	private static final String URL = "jdbc:postgresql://localhost:5432/eZoo";
 	
 	private static AnimalDaoImpl animalDaoImpl;
+	private static FeedingScheduleDAOImpl feedingScheduleDaoImpl;
 	private static Connection connection;
 
 	public static synchronized AnimalDAO getAnimalDao() {
@@ -26,6 +27,13 @@ public class DAOUtilities {
 			animalDaoImpl = new AnimalDaoImpl();
 		}
 		return animalDaoImpl;
+	}
+	
+	public static synchronized FeedingScheduleDAO getFeedingScheduleDao() {
+		if (feedingScheduleDaoImpl == null) {
+			animalDaoImpl = new AnimalDaoImpl();
+		}
+		return feedingScheduleDaoImpl;
 	}
 
 	static synchronized Connection getConnection() throws SQLException {
