@@ -31,7 +31,7 @@ public class DAOUtilities {
 	
 	public static synchronized FeedingScheduleDAO getFeedingScheduleDao() {
 		if (feedingScheduleDaoImpl == null) {
-			animalDaoImpl = new AnimalDaoImpl();
+			feedingScheduleDaoImpl = new FeedingScheduleDAOImpl();
 		}
 		return feedingScheduleDaoImpl;
 	}

@@ -37,6 +37,7 @@
 					<th class="text-center">Weight(lbs)</th>
 					<th class="text-center">Type</th>
 					<th class="text-center">Health Status</th>
+					<th class="text-center">Feeding Schedule</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -57,6 +58,31 @@
 						
 						<td><c:out value="${animal.type}" /></td>
 						<td><c:out value="${animal.healthStatus}" /></td>
+						
+						<td>
+						<c:choose>
+							<c:when test="${animal.feedingScheduleID == 0 }">
+								<form action="AssignFeedingSchedule" method="GET">
+									<input type="hidden" name="id" value="${animal.animalID }" />
+									<input type="hidden" name="name" value="${animal.name }" />
+									<button type="submit" class="btn btn-default">Assign</button>
+								</form>
+							</c:when>
+							<c:when test="${animal.feedingScheduleID != 0 }">
+							ID:
+								<a href="viewSchedule.jsp?ID=${animal.feedingScheduleID}">
+									<c:out value="${animal.feedingScheduleID }"/>
+								</a>
+								
+								<form action="AssignFeedingSchedule" method="GET">
+									<input type="hidden" name="animalID" value="${animal.animalID }" />
+									<input type="hidden" name="animalName" value="${animal.name }" />
+									<button type="submit" class="btn btn-default"
+									style="margin-top:5%">Reassign</button>
+								</form>
+							</c:when>
+						</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
