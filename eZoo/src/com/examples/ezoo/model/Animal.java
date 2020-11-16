@@ -27,7 +27,10 @@ public class Animal{
 			String healthStatus) {
 		super();
 		this.animalID = animalID;
-		this.feedingScheduleID = feedingScheduleID;
+		// if a feeding schedule ID isn't provided, default is 0
+		if(feedingScheduleID != 0L ) {
+			this.feedingScheduleID = feedingScheduleID;
+		}
 		this.name = name;
 		this.taxKingdom = taxKingdom;
 		this.taxPhylum = taxPhylum;

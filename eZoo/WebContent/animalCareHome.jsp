@@ -63,21 +63,21 @@
 						<c:choose>
 							<c:when test="${animal.feedingScheduleID == 0 }">
 								<form action="AssignFeedingSchedule" method="GET">
-									<input type="hidden" name="id" value="${animal.animalID }" />
-									<input type="hidden" name="name" value="${animal.name }" />
-									<button type="submit" class="btn btn-default">Assign</button>
+									<input type="hidden" name="animalID" value="${animal.animalID }" />
+									<input type="hidden" name="animalName" value="${animal.name }" />
+									<button type="submit" class="btn btn-primary">Assign</button>
 								</form>
 							</c:when>
 							<c:when test="${animal.feedingScheduleID != 0 }">
 							ID:
-								<a href="viewSchedule.jsp?ID=${animal.feedingScheduleID}">
+								<a href="EditFeedingSchedule?ID=${animal.feedingScheduleID }">
 									<c:out value="${animal.feedingScheduleID }"/>
 								</a>
 								
 								<form action="AssignFeedingSchedule" method="GET">
 									<input type="hidden" name="animalID" value="${animal.animalID }" />
 									<input type="hidden" name="animalName" value="${animal.name }" />
-									<button type="submit" class="btn btn-default"
+									<button type="submit" class="btn btn-primary"
 									style="margin-top:5%">Reassign</button>
 								</form>
 							</c:when>

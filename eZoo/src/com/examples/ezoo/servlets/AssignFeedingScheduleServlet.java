@@ -45,6 +45,28 @@ public class AssignFeedingScheduleServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Long scheduleID = Long.parseLong(request.getParameter("scheduleID"));
+		Long animalID = Long.parseLong(request.getParameter("animalID"));
+		
+		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDao();
+		
+		try {
+			dao.assignSchedule(scheduleID, animalID);
+			request.getSession().setAttribute("message", "Schedule successfully assigned");
+			request.getSession().setAttribute("messageClass", "alert-success");
+			response.sendRedirect("animalCare");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			//change the message
+			request.getSession().setAttribute("message", "Couldn't assign schedule " + scheduleID + " to animal " + animalID);
+			request.getSession().setAttribute("messageClass", "alert-danger");
+			
+			request.getRequestDispatcher("assignSchedule.jsp").forward(request, response);
+		}
+		
+		
 	}
 
 }

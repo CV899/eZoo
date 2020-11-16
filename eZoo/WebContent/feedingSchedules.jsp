@@ -13,16 +13,13 @@
 			background:none; 
 			pointer-events:none;
 		}
-		
-		.remove-button {
-			padding: 3% 0;
-		}
 	</style>
 	
 	<header>
-		<div class="container">
-		
-		<c:choose>
+	
+	<div class="container">
+	
+	<c:choose>
 		<c:when test="${not empty message }">
 	  	<p class="alert ${messageClass}">${message }</p>
 		<%
@@ -34,15 +31,7 @@
 		
 		<h1>eZoo <small>Animal Care</small></h1>
 		<hr class="paw-primary">
-		<h4>Select a feeding schedule for <c:out value="${animalName }" /> (ID: 
-		<c:out value="${animalID }" />)</h4>
-		<form action="RemoveSchedule" class="remove-button">
-			<input type="hidden" name="animalID" value="${animalID }" />
-			<button type="submit" 
-				onclick="return confirm('Remove the schedule for <c:out value="${animalName }" />?')" 
-				class="btn btn-danger">Remove schedule
-			</button>
-		</form>
+		<h4>Feeding Schedules</h4>
 		
 		<table class="table table-striped table-hover table-responsive ezoo-datatable">
 			<thead>
@@ -52,6 +41,7 @@
 					<th class="text-center">Recurrence</th>
 					<th class="text-center">Food</th>
 					<th class="text-center">Notes</th>
+					<th class="sorting-disabled"></th>
 					<th class="sorting-disabled"></th>
 				</tr>
 			</thead>
@@ -66,10 +56,16 @@
 						<td><c:out value="${schedule.notes}" /></td>
 						
 						<td>
-							<form action="AssignFeedingSchedule" method="post">
+							<form action="EditFeedingSchedule" method="get">
+								<input type="hidden" name="ID" value="${schedule.scheduleID }" />
+								<button type="submit" class="btn btn-success">Edit</button>
+							</form>
+						</td>
+						<td>
+							<form action="DeleteFeedingSchedule" method="get">
 								<input type="hidden" name="scheduleID" value="${schedule.scheduleID }" />
-								<input type="hidden" name="animalID" value="${animalID }" />
-								<button type="submit" class="btn btn-primary">Select</button>
+								<button type="submit" onclick="return confirm('Are you sure you want to delete this schedule?')" 
+									class="btn btn-danger">Delete</button>
 							</form>
 						</td>
 						
@@ -77,7 +73,9 @@
 				</c:forEach>
 			</tbody>
 		</table>	
-		</div>
+	
+	</div>
+	
 	</header>
 	
 	<jsp:include page="footer.jsp" />

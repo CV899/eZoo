@@ -13,10 +13,12 @@ public interface FeedingScheduleDAO {
 	
 	List<Schedule> allSchedules();
 	
-	Schedule getSchedule(Animal animal);
+	Schedule getSchedule(Long ID);
 	
-	void assignSchedule(Schedule schedule, Animal animal);
+	void removeSchedule(Long animalID) throws Exception;
+
+	void assignSchedule(Long scheduleID, Long animalID) throws Exception;
 	
-	void removeSchedule(Animal animal);
+	void editSchedule(Schedule schedule) throws Exception;
 	
 }

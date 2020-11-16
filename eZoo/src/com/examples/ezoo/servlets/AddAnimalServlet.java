@@ -13,9 +13,6 @@ import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.DAOUtilities;
 import com.examples.ezoo.model.Animal;
 
-/**
- * Servlet implementation class AddAnimalServlet
- */
 @WebServlet("/addAnimal")
 public class AddAnimalServlet extends HttpServlet {
 	
@@ -31,8 +28,15 @@ public class AddAnimalServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get Parameters
 		//We MUST convert to a Long since parameters are always Strings
-		long id = Long.parseLong(request.getParameter("id"));
-		long feedingSchedule = Long.parseLong(request.getParameter("feeding_schedule"));
+		
+		long scheduleID;
+		if(request.getParameter("feedingScheduleID") == null) { // if a feeding schedule was given
+			 scheduleID = 0L;
+		} else {
+			scheduleID = Long.parseLong(request.getParameter("feedingScheduleID"));
+		}
+		
+		long animalID = Long.parseLong(request.getParameter("id"));
 		
 		String name = request.getParameter("name");
 
@@ -51,9 +55,9 @@ public class AddAnimalServlet extends HttpServlet {
 		double weight = Double.parseDouble(request.getParameter("weight"));
 		
 		//Create an Animal object from the parameters
-		Animal animalToSave = new Animal(
-				id, 
-				feedingSchedule,
+		Animal animalToSave = new Animal( 
+				animalID,
+				scheduleID,
 				name, 
 				kingdom,
 				phylum,
